@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="{% static 'code.css' %}">  {#语法高亮#}
+    </head>
+    <body>
+
+        <p>
+        {{ answer |safe }}
+        </p>
+
+    </body>
+</html>
