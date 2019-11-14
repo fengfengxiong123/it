@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xz^k@zl*no&gr=j7gr6_v698ugqdux#%#(p$h1-2syib+b564b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -127,9 +127,9 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 # 开发阶段放置项目自己的静态文件，不能包含STATIC_ROOT路径
-# STATICFILES_DIRS=[
-#     os.path.join(BASE_DIR,'static')
-# ]
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'')
+]
 
 # 执行collectstatic命令后会将项目中的静态文件（包括STATICFILES_DIRS、自带admin的静态文件）
 # 收集到该目录下面来
