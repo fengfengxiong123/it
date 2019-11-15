@@ -1,15 +1,28 @@
+{% extends 'share/base.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="zh">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" type="text/css" href="{% static 'code.css' %}">  {#语法高亮#}
-    </head>
-    <body>
 
-        <p>
-        {{ answer |safe }}
-        </p>
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'code.css' %}">
+    <title>{{ question }}-哦啦网</title>
+    <meta name="keywords" content={{ question }}>
+    <meta name="description" content={{ question }}>
+{% endblock head %}
 
-    </body>
-</html>
+{% block content %}
+    <div class="dot_box">
+        <div class="dot_shape_title">{{ question }}</div>
+        <div>
+            {{ answer |safe }}
+        </div>
+    </div>
+    <style>
+        .dot_box{
+            background-color: white;
+            padding: 50px 30px 13px ;
+        }
+        .dot_shape_title {
+            font-size: 30px;
+        }
+    </style>
+{% endblock content %}
+

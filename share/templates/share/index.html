@@ -1,17 +1,49 @@
+{% extends 'share/base.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="zh">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" type="text/css" href="{% static 'code.css' %}">
-    </head>
-    <body>
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'code.css' %}">
+    <title>IT知识分享-哦啦网</title>
+    <meta name="keywords" content='前端，后端，服务器，开发，部署，python，centos，linux，nginx，uwsgi'>
+    <meta name="description" content='IT知识分享平台'>
+{% endblock head %}
+
+{% block content %}
     {% for dot in dots %}
-        <p>
-        <a href="{% url 'dot' id=dot.id %}">
-        {{ dot.question |safe }}
-        </a>
-        </p>
+        <div class="index_dot_box">
+            <div class="dot_shape_title" href="{% url 'dot' id=dot.id %}">
+                <a href="{% url 'dot' id=dot.id %}">
+                    {{ dot.question |safe }}
+                </a>
+            </div>
+            {% if dot.summary %}
+                <div class="dot_shape_content">
+                    {{ dot.summary }}
+                </div>
+            {% else %}
+                <div class="dot_shape_content">
+
+                </div>
+            {% endif %}
+        </div>
+
     {% endfor %}
-    </body>
-</html>
+
+ <style>
+    .index_dot_box{
+        height: 90px;
+        background-color: white;
+        margin: 1px;
+        border-radius: 0 5px 0 0;
+        padding: 18px 24px 13px 24px;
+    }
+ .dot_shape_title{
+     height:30px;
+     line-height: 30px;
+ }
+  .dot_shape_content{
+     height:60px;
+     line-height: 60px;
+ }
+</style>
+{% endblock content %}

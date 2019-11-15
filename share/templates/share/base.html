@@ -3,12 +3,58 @@
 <html lang="zh">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'code.css' %}">
+
     {#语法高亮#}
+    {% block head %}
+    {% endblock head %}
+
 </head>
 <body>
+<div class="it_header_box flex_direction">
+    <div class="width_33 text_center"><a  href="{% url 'index' %}">首页</a></div>
+    <div class="width_33 text_center">前端</div>
+    <div class="width_33 text_center">后端</div>
+    <div class="width_33 text_center">服务器</div>
+    <div class="width_33 text_center">开发</div>
+    <div class="width_33 text_center">部署</div>
+</div>
+<div class="it_box ">
     {% block content %}
-
     {% endblock content %}
+</div>
+<style>
+    .it_box{
+        width: 60%;
+        margin: 30px 20%;
+    }
+    .it_header_box{
+        width: 60%;
+        margin: 30px 20%;
+    }
+    .flex_direction{
+        display: flex;
+        flex-direction: row;
+    }
+    .width_33{
+        width: 16%;
+    }
+    .text_center{
+        text-align: center;
+    }
+    .text_left{
+        text-align: left;
+    }
+    .text_right{
+        text-align: right;
+    }
+    body{
+        background-color: #f9f9f9;
+    }
+    a {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>
 </body>
 </html>

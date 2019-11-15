@@ -14,18 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
-
+from django.urls import path, include
+from django.contrib.staticfiles.views import serve
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path('favicon.ico', serve, {'path': 'img/favicon.ico'}),
     path('admin/', admin.site.urls),
-    path('',include('share.urls')),
-
-    path(r'mdeditor/',include('mdeditor.urls'))
+    path('', include('share.urls')),
+    path(r'mdeditor/', include('mdeditor.urls'))
 ]
 
-#mdeditor文本编辑器配置
+# mdeditor文本编辑器配置
 if settings.DEBUG:
-    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
