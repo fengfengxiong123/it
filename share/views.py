@@ -52,13 +52,9 @@ class DotView(View):
 
         return render(request, 'share/dot.html', context)
 
-
-
-
-
 class AddDotView(View):
     def get(self, request):
-        form = MDEditorForm(mutable = True)
+        form = MDEditorForm()
         context = {'form': form}
         return render(request, 'share/add.html', context)
 
