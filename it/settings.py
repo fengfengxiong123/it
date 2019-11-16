@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xz^k@zl*no&gr=j7gr6_v698ugqdux#%#(p$h1-2syib+b564b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'share',
     'mdeditor',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +165,4 @@ MDEDITOR_CONFIGS = {
         'sequence': True  # Whether to open the sequence diagram function   是否打开序列图函数
     }
 }
+LOGIN_URL = '/users/login/'

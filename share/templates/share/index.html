@@ -11,8 +11,8 @@
 {% block content %}
     {% for dot in dots %}
         <div class="index_dot_box">
-            <div class="dot_shape_title" href="{% url 'dot' id=dot.id %}">
-                <a href="{% url 'dot' id=dot.id %}">
+            <div class="dot_shape_title" href="{% url 'share:dot' id=dot.id %}">
+                <a href="{% url 'share:dot' id=dot.id %}">
                     {{ dot.question |safe }}
                 </a>
             </div>

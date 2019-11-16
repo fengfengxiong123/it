@@ -14,12 +14,23 @@
 </head>
 <body>
 <div class="it_header_box flex_direction">
-    <div class="width_33 text_center"><a  href="{% url 'index' %}">首页</a></div>
+    <div class="width_33 text_center"><a  href="{% url 'share:index' %}">首页</a></div>
     <div class="width_33 text_center">前端</div>
     <div class="width_33 text_center">后端</div>
     <div class="width_33 text_center">服务器</div>
     <div class="width_33 text_center">开发</div>
     <div class="width_33 text_center">部署</div>
+    {% if user.is_authenticated %}
+    {{ user.username }}
+    {% else %}
+    <div class="width_33 text_center"><a href="{% url 'users:login' %}">登录</a></div>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <div class="width_33 text_center"><a href="{% url 'users:logout' %}"> 退出</a></div>
+    {% else %}
+    <div class="width_33 text_center"><a href="{% url 'users:register' %}">注册</a></div>
+    {% endif %}
+
 </div>
 <div class="it_box ">
     {% block content %}
@@ -39,7 +50,7 @@
         flex-direction: row;
     }
     .width_33{
-        width: 16%;
+        width: 12%;
     }
     .text_center{
         text-align: center;

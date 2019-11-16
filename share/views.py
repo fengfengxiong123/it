@@ -52,20 +52,26 @@ class DotView(View):
 
         return render(request, 'share/dot.html', context)
 
+
+
+
+
 class AddDotView(View):
+
     def get(self, request):
         form = MDEditorForm()
         context = {'form': form}
         return render(request, 'share/add.html', context)
 
     def post(self, request):
-        post_dict=request.POST.copy()
+        auth_user_id = request.session.get('_auth_user_id')
+        post_dict = request.POST.copy()
         html = request.POST['id_answer-wmd-wrapper-html-code'][:200]
         pattern = re.compile(r'<[^>]+>', re.S)
         result = pattern.sub('', html)
-        post_dict['summary']=result
+        post_dict['summary'] = result
+        post_dict['user'] = auth_user_id
         form = MDEditorModleForm(post_dict)
-        print(form)
         if form.is_valid():
             form.save()
-        return redirect(reverse('index'))
+        return redirect(reverse('share:index'))
