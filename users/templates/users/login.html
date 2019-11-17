@@ -1,31 +1,56 @@
 {% extends 'share/base.html' %}
 {% block content %}
-{% if form.errors %}
-<p>Your username and password didn't match. Please try agai</p>
-{% endif %}
-<form method="post" action="{% url 'users:login' %}">
-{% csrf_token %}
-    {{ form.as_p }}
-{#    {{ form.username.label_tag }}#}
-{#    {{ form.username | label_with_classes:'c1' }}#}
-{#    {{ form.password.label_tag }}#}
-{#    {{ form.password }}#}
-{#{{ form.as_p }}#}
-<button name="submit">log in</button>
-<input type="hidden" name="next" value="{% url 'share:index' %}">
-</form>
-<script>
-    var loginInput=document.getElementById('id_username');
+    <div>
+        {% if form.errors %}
+            <p>请输入正确的用户名和密码</p>
+        {% endif %}
+        <form class="form_box" method="post" action="{% url 'users:login' %}">
+            {% csrf_token %}
+            <div class="margin_line">
+                用户名：{{ form.username }}
+            </div>
+            <div class="margin_line">
+                密&nbsp&nbsp&nbsp&nbsp码：{{ form.password }}
+            </div>
+            <div class="margin_line">
+                <button name="submit">登&nbsp&nbsp录</button>
+            </div>
+            <input type="hidden" name="next" value="{% url 'share:index' %}">
+        </form>
+    </div>
+    <style>
+        .form_box {
+            width: auto;
+            margin: 10% 30%;
+        }
 
+        .margin_line {
+            margin: 40px 0 0 0;
+            text-align: center;
+        }
 
-    function setStyle(arg1) {
-        var element = document.getElementById(arg1);
-        element.style.border='1px solid #c8cccf';
-        element.style.color='#6a6f77';
-        element.style.height='2.7em';
-        element.style.borderRadius='4px';
-    }
-    setStyle('id_username');
-    setStyle('id_password');
-</script>
+        button {
+            border: 1px solid #c8cccf;
+            background-color: #cc1111;
+            border-radius: 4px;
+            height: 44px;
+            width: 100px;
+            color: white;
+            font-size: larger;
+        }
+    </style>
+    <script>
+        var loginInput = document.getElementById('id_username');
+
+        function setStyle(arg1) {
+            var element = document.getElementById(arg1);
+            element.style.border = '1px solid #c8cccf';
+            element.style.color = '#6a6f77';
+            element.style.height = '2.7em';
+            element.style.borderRadius = '4px';
+        }
+
+        setStyle('id_username');
+        setStyle('id_password');
+    </script>
 {% endblock %}
