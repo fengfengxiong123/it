@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xz^k@zl*no&gr=j7gr6_v698ugqdux#%#(p$h1-2syib+b564b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -141,7 +141,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
 MDEDITOR_CONFIGS = {
-    'default':{
+    'default': {
         'width': '90% ',  # Custom edit box width  宽度，整个页面的百分之多少
         'heigth': 1500,  # Custom edit box height   高度，单位为px
         'toolbar': ["undo", "redo", "|",
@@ -149,10 +149,12 @@ MDEDITOR_CONFIGS = {
                     "h1", "h2", "h3", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime"
-                    "emoji", "html-entities", "pagebreak", "goto-line", "|",
+                                                                                                           "emoji",
+                    "html-entities", "pagebreak", "goto-line", "|",
                     "help", "info",
                     "||", "preview", "watch", "fullscreen"],  # custom edit box toolbar   工具栏
-        'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],  # image upload format type  允许上传的图片 的格式，不在这个里面的格式将不允许被上传
+        'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+        # image upload format type  允许上传的图片 的格式，不在这个里面的格式将不允许被上传
         'image_floder': 'editor',  # image save the folder name   上传图片后存放的目录，BASE_DIR/MEDIA_ROOT/editor
         'theme': 'default',  # edit box theme, dark / default  mdeditor主题，dark/default两种
         'preview_theme': 'default',  # Preview area theme, dark / default  内容显示区主题 dark/default
@@ -166,3 +168,5 @@ MDEDITOR_CONFIGS = {
     }
 }
 LOGIN_URL = '/users/login/'
+
+AUTH_USER_MODEL = 'users.User'
