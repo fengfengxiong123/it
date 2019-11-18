@@ -7,5 +7,5 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('add_dot/', login_required(views.AddDotView.as_view()), name='add_dot'),
     re_path(r'^dot/(?P<id>\d+)/$', views.DotView.as_view(), name='dot'),
-    re_path(r'^dots/(?P<arg>[a-z]+)/$', views.DotsFontView.as_view(), name='dots'),
+    re_path(r'^dots/(?P<arg>[a-z]+)/$', views.DotsView.as_view(), name='dots'),
 ]

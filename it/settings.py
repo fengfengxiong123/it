@@ -169,4 +169,5 @@ MDEDITOR_CONFIGS = {
 }
 LOGIN_URL = '/users/login/'
 
+#django会应用的模型中找User，因此需要在模型中有
 AUTH_USER_MODEL = 'users.User'

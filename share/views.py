@@ -18,7 +18,7 @@ class IndexView(View):
         return render(request, 'share/index.html', context)
 
 
-class DotsFontView(View):
+class DotsView(View):
     def get(self, request, arg):
         context = {}
         desc_str = '分享IT知识，免费学习{}知识，{}'
