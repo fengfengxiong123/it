@@ -3,15 +3,15 @@
 
 {% block head %}
 
-    <title>哦啦分享网</title>
-    <meta name="keywords" content='前端，后端，服务器，开发，部署，python，centos，linux，nginx，uwsgi'>
-    <meta name="description" content='IT知识分享平台'>
+    <title>{{ title }}</title>
+    <meta name="keywords" content={{ keywords }}>
+    <meta name="description" content={{ description }}>
 {% endblock head %}
 
 {% block content %}
     {% for dot in dots %}
         <div class="index_dot_box">
-            <div class="dot_shape_title" href="{% url 'share:dot' id=dot.id %}">
+            <div class="dot_shape_title" >
                 <a href="{% url 'share:dot' id=dot.id %}">
                     {{ dot.question |safe }}
                 </a>
@@ -19,7 +19,13 @@
             {% if dot.summary %}
                 <div class="dot_shape_content">
                     <div class="dot_shape_title">{{ dot.summary }}</div>
-                    <div class="dot_shape_title">{{ dot.user__nickname }} 发布于 {{ dot.date_time_last }}</div>
+                    <div class="dot_shape_title">
+                        {% if dot.user__nickname %}
+                            {{ dot.user__nickname }}
+                        {% else %}
+                            {{ dot.user__username }}
+                        {% endif %}
+                        发布于 {{ dot.date_time_last }}</div>
                 </div>
             {% else %}
                 <div class="dot_shape_content">
@@ -34,14 +40,18 @@
         .index_dot_box {
             height: 90px;
             background-color: white;
-            margin: 1px;
-            border-radius: 0 5px 0 0;
+            margin: 3px;
+            border-radius: 5px;
             padding: 18px 24px 13px 24px;
         }
 
         .dot_shape_title {
             height: 30px;
             line-height: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
         }
 
         .dot_shape_content {

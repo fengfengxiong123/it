@@ -7,5 +7,5 @@ from django.db import models
 
 
 class User(AbstractUser):
-    nickname = models.CharField(verbose_name='昵称', max_length=12, default='')
+    nickname = models.CharField(verbose_name='昵称', max_length=12,unique=True)
 

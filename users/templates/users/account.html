@@ -1,0 +1,67 @@
+{% extends 'share/base.html' %}
+{% block content %}
+    <div class="my_info_box">
+        <div class="my_info_line_padding">我的：</div>
+        <div class="my_info_line_padding"> {% if user_obj.nickname %}昵称：{{ user_obj.nickname }}{% else %}用户名：
+            {{ user_obj.username }}{% endif %}</div>
+        <div class="my_info_line_padding">上次登录： {{ user_obj.last_login }}</div>
+        <div class="my_info_line_padding">注册时间： {{ user_obj.date_joined }}</div>
+
+        <div class="line"></div>
+
+        <div class="my_share_line_padding">我的分享：</div>
+        <div class="flex_direction my_share_line_padding">
+            <div class="share_question">分享内容</div>
+            <div class="share_date_firt">创建时间</div>
+        </div>
+        {% for user_dot in  user_dots_query %}
+            <div class="flex_direction my_share_line_padding">
+                <div class="share_question"><a href="{% url 'share:dot' id=user_dot.id %}">{{ user_dot.question }}</a>
+                </div>
+                <div class="share_date_firt">{{ user_dot.date_time_first }}</div>
+            </div>
+        {% endfor %}
+    </div>
+    <style>
+        .my_info_box {
+            border: 1px solid #00A000;
+            border-radius: 5px;
+            padding: 40px 60px 40px 60px;
+        }
+
+        .my_info_line_padding {
+            padding: 10px 0;
+        }
+
+        .line {
+            margin: 30px 0;
+            height: 1px;
+            border-top: solid #00A000 1px;
+            width: auto;
+        }
+
+        .share_question {
+            width: 70%;
+            text-align: left;
+        }
+
+        .share_date_firt {
+            width: 30%;
+            text-align: left;
+
+        }
+
+        .flex_direction {
+            flex-direction: row;
+        }
+
+        .my_share_line_padding {
+            padding: 10px 0;
+        }
+
+        body {
+            background-color: white;
+        }
+
+    </style>
+{% endblock %}

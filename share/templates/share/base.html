@@ -3,38 +3,44 @@
 <html lang="zh">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'code.css' %}">
     {% block head %}
     {% endblock head %}
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "https://hm.baidu.com/hm.js?760e681cf9ad5056e18fa3fbbe3e000c";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
-	</script>    
-
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?0c712a814d1fb3d8aa8df84e7b29ea74";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
 <div class="it_header_box flex_direction">
-    <div class="width_33 text_center"><a  href="{% url 'share:index' %}">首页</a></div>
-    <div class="width_33 text_center"><a  href="{% url 'share:dots' arg='font' %}">前端</a></div>
-    <div class="width_33 text_center" ><a  href="{% url 'share:dots' arg='backend' %}">后端</a></div>
-    <div class="width_33 text_center"><a  href="{% url 'share:dots' arg='server' %}">服务器</a></div>
-    <div class="width_33 text_center"><a  href="{% url 'share:dots' arg='dev' %}">开发</a></div>
-    <div class="width_33 text_center"><a  href="{% url 'share:dots' arg='product' %}">部署</a></div>
+    <div class="width_33 text_center"><a href="{% url 'share:index' %}">首页</a></div>
+    <div class="width_33 text_center"><a href="{% url 'share:dots' arg='font' %}">前端</a></div>
+    <div class="width_33 text_center"><a href="{% url 'share:dots' arg='backend' %}">后端</a></div>
+    <div class="width_33 text_center"><a href="{% url 'share:dots' arg='server' %}">服务器</a></div>
+    <div class="width_33 text_center"><a href="{% url 'share:dots' arg='dev' %}">开发</a></div>
+    <div class="width_33 text_center"><a href="{% url 'share:dots' arg='product' %}">部署</a></div>
     {% if user.is_authenticated %}
-    {{ user.username }}
+        <div><a href="{% url 'users:account'%}">
+        {% if user.username %}
+            {{ user.username }}
+        {% else %}
+            {{ user.nickname }}
+        {% endif %}
+        </a>
+        </div>
     {% else %}
-    <div class="width_33 text_center"><a href="{% url 'users:login' %}">登录</a></div>
+        <div class="width_33 text_center"><a href="{% url 'users:login' %}">登录</a></div>
     {% endif %}
     {% if user.is_authenticated %}
-    <div class="width_33 text_center"><a href="{% url 'users:logout' %}"> 退出</a></div>
+        <div class="width_33 text_center"><a href="{% url 'users:logout' %}"> 退出</a></div>
     {% else %}
-    <div class="width_33 text_center"><a href="{% url 'users:register' %}">注册</a></div>
+        <div class="width_33 text_center"><a href="{% url 'users:register' %}">注册</a></div>
     {% endif %}
 
 </div>
@@ -43,33 +49,41 @@
     {% endblock content %}
 </div>
 <style>
-    .it_box{
+    .it_box {
         width: 60%;
         margin: 30px 20%;
     }
-    .it_header_box{
+
+    .it_header_box {
         width: 60%;
         margin: 30px 20%;
     }
-    .flex_direction{
+
+    .flex_direction {
         display: flex;
         flex-direction: row;
     }
-    .width_33{
+
+    .width_33 {
         width: 12%;
     }
-    .text_center{
+
+    .text_center {
         text-align: center;
     }
-    .text_left{
+
+    .text_left {
         text-align: left;
     }
-    .text_right{
+
+    .text_right {
         text-align: right;
     }
-    body{
+
+    body {
         background-color: #f9f9f9;
     }
+
     a {
         display: block;
         width: 100%;

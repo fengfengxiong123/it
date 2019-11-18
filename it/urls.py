@@ -19,12 +19,11 @@ from django.contrib.staticfiles.views import serve
 from django.conf.urls.static import static
 from django.conf import settings
 
-
 urlpatterns = [
     path('favicon.ico', serve, {'path': 'img/favicon.ico'}),
     path('admin/', admin.site.urls),
-    path('', include('share.urls',namespace='share')),
-    path('users/', include('users.urls',namespace='users')),
+    path('', include('share.urls', namespace='share')),
+    path('users/', include('users.urls', namespace='users')),
     path(r'mdeditor/', include('mdeditor.urls'))
 ]
 
