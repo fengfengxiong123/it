@@ -1,7 +1,91 @@
-<form method="post" action="{% url 'users:register' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
+{% extends 'share/base.html' %}
+{% block content %}
+    <div>
 
-<button name="submit">注册</button>
-{#<input type="hidden" name="next" value="{% url 'share:index' %}">#}
-</form>
+        <form class="form_box" method="post" action="{% url 'users:register' %}">
+            {% csrf_token %}
+            <div class="margin_line" onmouseover="overShow('username_help_text')"
+                 onmouseout="outHide('username_help_text')">
+                用&nbsp户&nbsp名 {{ form.username }}
+                <div class="display_none" id="username_help_text">
+                    {{ form.username.help_text }}
+                </div>
+            </div>
+            <div class="margin_line" onmouseover="overShow('password1_help_text')"
+                 onmouseout="outHide('password1_help_text')">
+                <div>
+                    密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码 {{ form.password1 }}
+                </div>
+                <div id="password1_help_text" class="display_none float_left">
+                    {{ form.password1.help_text }}
+                </div>
+            </div>
+            <div class="margin_line">
+                密码确认 {{ form.password2 }}
+            </div>
+            <div class="margin_line">
+                <button name="submit">注册</button>
+            </div>
+            {% if form.errors %}
+                {% if form.errors.username %}
+                    {{ form.errors.username }}
+                {% elif form.errors.password2 %}
+                    {{ form.errors.password2 }}
+                {% endif %}
+            {% endif %}
+            {#<input type="hidden" name="next" value="{% url 'share:index' %}">#}
+        </form>
+    </div>
+    <style>
+        .form_box {
+            width: auto;
+            margin: 10% 30%;
+        }
+
+        .margin_line {
+            margin: 40px 0 0 0;
+            text-align: left;
+        }
+
+        button {
+            border: 1px solid #c8cccf;
+            background-color: #cc1111;
+            border-radius: 4px;
+            height: 44px;
+            width: 250px;
+            color: white;
+            font-size: larger;
+        }
+
+        .display_none {
+            display: none;
+        }
+
+        .float_left {
+            float: left;
+        }
+    </style>
+    <script>
+        function setStyle(e) {
+            var element = document.getElementById(e);
+            element.style.border = '1px solid #c8cccf';
+            element.style.color = '#6a6f77';
+            element.style.height = '2.7em';
+            element.style.borderRadius = '4px';
+        }
+
+        setStyle('id_username');
+        setStyle('id_password1');
+        setStyle('id_password2');
+
+        function overShow(e) {
+            var ele = document.getElementById(e);
+            ele.style.display = 'table-cell';
+        }
+
+        function outHide(e) {
+            var ele = document.getElementById(e);
+            ele.style.display = 'none';
+        }
+    </script>
+{% endblock %}

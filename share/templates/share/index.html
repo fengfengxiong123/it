@@ -3,7 +3,7 @@
 
 {% block head %}
 
-    <title>IT知识分享-哦啦网</title>
+    <title>哦啦分享网</title>
     <meta name="keywords" content='前端，后端，服务器，开发，部署，python，centos，linux，nginx，uwsgi'>
     <meta name="description" content='IT知识分享平台'>
 {% endblock head %}
@@ -18,7 +18,8 @@
             </div>
             {% if dot.summary %}
                 <div class="dot_shape_content">
-                    {{ dot.summary }}
+                    <div class="dot_shape_title">{{ dot.summary }}</div>
+                    <div class="dot_shape_title">{{ dot.user__nickname }} 发布于 {{ dot.date_time_last }}</div>
                 </div>
             {% else %}
                 <div class="dot_shape_content">
@@ -29,21 +30,23 @@
 
     {% endfor %}
 
- <style>
-    .index_dot_box{
-        height: 90px;
-        background-color: white;
-        margin: 1px;
-        border-radius: 0 5px 0 0;
-        padding: 18px 24px 13px 24px;
-    }
- .dot_shape_title{
-     height:30px;
-     line-height: 30px;
- }
-  .dot_shape_content{
-     height:60px;
-     line-height: 60px;
- }
-</style>
+    <style>
+        .index_dot_box {
+            height: 90px;
+            background-color: white;
+            margin: 1px;
+            border-radius: 0 5px 0 0;
+            padding: 18px 24px 13px 24px;
+        }
+
+        .dot_shape_title {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .dot_shape_content {
+            height: 60px;
+            line-height: 60px;
+        }
+    </style>
 {% endblock content %}

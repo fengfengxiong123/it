@@ -1,16 +1,14 @@
 from django.shortcuts import render, reverse, redirect
 from django.views import View
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
 
 
 class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect(reverse('share:index'))
-
-
-from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponseRedirect
 
 
 class RegisterView(View):

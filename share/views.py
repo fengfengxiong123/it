@@ -27,7 +27,25 @@ class MDEditorModleForm(forms.ModelForm):
 class IndexView(View):
 
     def get(self, request):
-        dots = Dot.objects.values('id', 'question', 'summary')
+        dots = Dot.objects.values('id', 'question', 'summary', 'date_time_last', 'user__nickname')
+        context = {'dots': dots}
+        return render(request, 'share/index.html', context)
+
+
+class DotsFontView(View):
+    def get(self, request, arg):
+        if arg == 'font':
+            dots = Dot.objects.filter(font=1).values('id', 'question', 'summary', 'date_time_last', 'user__nickname')
+        elif arg == 'backend':
+            dots = Dot.objects.filter(backend=1).values('id', 'question', 'summary', 'date_time_last', 'user__nickname')
+        elif arg == 'server':
+            dots = Dot.objects.filter(server=1).values('id', 'question', 'summary', 'date_time_last', 'user__nickname')
+        elif arg == 'dev':
+            dots = Dot.objects.filter(dev=1).values('id', 'question', 'summary', 'date_time_last', 'user__nickname')
+        elif arg == 'product':
+            dots = Dot.objects.filter(product=1).values('id', 'question', 'summary', 'date_time_last', 'user__nickname')
+        else:
+            dots = Dot.objects.values('id', 'question', 'summary', 'date_time_last', 'user__nickname')
         context = {'dots': dots}
         return render(request, 'share/index.html', context)
 
@@ -51,9 +69,6 @@ class DotView(View):
         context = {'answer': answer, 'question': dot_question}
 
         return render(request, 'share/dot.html', context)
-
-
-
 
 
 class AddDotView(View):
