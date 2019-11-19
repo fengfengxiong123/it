@@ -2,49 +2,57 @@
 {% block content %}
     <div>
 
-        <form class="form_box" method="post" action="{% url 'users:register' %}">
-            {% csrf_token %}
-            <div class="margin_line" onmouseover="overShow('username_help_text')"
-                 onmouseout="outHide('username_help_text')">
-                用&nbsp户&nbsp名 {{ form.username }}
-                <div class="display_none" id="username_help_text">
+        <form class="form_box flex_direction" method="post" action="{% url 'users:register' %}">
+
+            <div class="width_50">
+                {% csrf_token %}
+                <div class="margin_line " onmouseover="overShow('username_help_text')"
+                     onmouseout="outHide('username_help_text')">
+                    <div class="">用&nbsp户&nbsp名 {{ form.username }}</div>
+
+                </div>
+                <div class="margin_line " onmouseover="overShow('password1_help_text')"
+                     onmouseout="outHide('password1_help_text')">
+                    <div class="">
+                        密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码 {{ form.password1 }}
+                    </div>
+
+                </div>
+                <div class="margin_line">
+                    密码确认 {{ form.password2 }}
+                </div>
+                <div class="margin_line">
+                    <button name="submit">注册</button>
+                </div>
+                {% if form.errors %}
+                    {% if form.errors.username %}
+                        {{ form.errors.username }}
+                    {% elif form.errors.password2 %}
+                        {{ form.errors.password2 }}
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="width_50">
+                <div class="display_none width_50" id="username_help_text">
                     {{ form.username.help_text }}
                 </div>
-            </div>
-            <div class="margin_line" onmouseover="overShow('password1_help_text')"
-                 onmouseout="outHide('password1_help_text')">
-                <div>
-                    密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码 {{ form.password1 }}
-                </div>
-                <div id="password1_help_text" class="display_none float_left">
+                <div id="password1_help_text" class="display_none float_left width_50">
                     {{ form.password1.help_text }}
                 </div>
+
             </div>
-            <div class="margin_line">
-                密码确认 {{ form.password2 }}
-            </div>
-            <div class="margin_line">
-                <button name="submit">注册</button>
-            </div>
-            {% if form.errors %}
-                {% if form.errors.username %}
-                    {{ form.errors.username }}
-                {% elif form.errors.password2 %}
-                    {{ form.errors.password2 }}
-                {% endif %}
-            {% endif %}
             {#<input type="hidden" name="next" value="{% url 'share:index' %}">#}
         </form>
     </div>
     <style>
         .form_box {
             width: auto;
-            margin: 10% 30%;
+            margin: 10% ;
         }
 
         .margin_line {
             margin: 40px 0 0 0;
-            text-align: left;
+            text-align: right;
         }
 
         button {
@@ -59,10 +67,20 @@
 
         .display_none {
             display: none;
+            float: left;
+            padding: 50px 0 0 0;
         }
 
         .float_left {
             float: left;
+        }
+
+        .flex_direction {
+            flex-direction: row;
+        }
+
+        .width_50 {
+            width: 50%;
         }
     </style>
     <script>

@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xz^k@zl*no&gr=j7gr6_v698ugqdux#%#(p$h1-2syib+b564b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -169,5 +169,5 @@ MDEDITOR_CONFIGS = {
 }
 LOGIN_URL = '/users/login/'
 
-#django会应用的模型中找User，因此需要在模型中有
-AUTH_USER_MODEL = 'users.User'
+# django会应用的模型中找User，因此需要在模型中有
+AUTH_USER_MODEL = 'users.MyUser'
